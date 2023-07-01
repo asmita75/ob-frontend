@@ -1,0 +1,360 @@
+
+API connection 
+
+Frontend to backend 
+
+npm i axios
+
+src vitra apis vanni folder ani apis vitra Api.js vanni file.
+
+APijs ma code garepaxi backend ma gayera run garni.
+
+useEffect: afai chalxa ani aru birse
+
+HOMEPAGE MA 
+  UseEffect(()=>{
+testApi().then((res)=>{
+  console.log(res);
+})
+  },[]);
+
+
+input vitra onChange halna paryo (form ma )
+
+backend 
+index.js ma npm i cors garni.
+
+// cors config
+const corsOptions={
+    origin:true,
+    credentials:true,
+    optionSuccessStatus:200
+};
+
+yo mathi ko code chai index.js ma
+
+
+response ra payload main herna parxa.
+
+backend ma gayera password lai hash garni aba .
+
+terminal ma npm bcrypt
+
+frontend ma 
+npm i react-toastify
+
+
+
+
+
+
+
+2080/01/30
+
+Saturday
+
+
+
+login banayo
+api.js ma  last ma code rakhyo
+// register route
+export const registerApi=(date)=> Api.post('/api/user/register',data);
+
+tespaxi register ma kk changes garyo jun maile bujhina 
+aba ma nasla sanga code magxu ani copy paste garxu.
+
+thavayo yo tala ko code raixa
+
+try{
+  registerApi({
+    fname:fname,
+    lname:lname,
+    email:email,
+    password:pass,
+    password2:pass2
+  }).then((res)=>{
+    toast.success("user register successfully");
+  }).catch((err)=>{
+    console.log((err)=>{
+      console.log(err);
+      toast.error("user registration failed");
+    });
+  }catch(error){
+    toast.error("registration failed");
+  });
+}
+
+
+ani yo add garyo same ma 
+
+
+// destructuring
+const{email,password}=req.body;
+
+// validation
+if(!email || !password){
+    return res.status(400).json({msg:"please enter all field"});
+}
+try {
+    const user=await User.findOne({email});
+
+    // check if user exists
+    if(!user){
+        return res.status(400).json({msg:"user doesn't exist"});
+    }
+} catch (error){
+    console.log(error);
+}
+
+catch ra try ko bichama ma yo 
+
+// check if password is correct
+const isCorrectPassowrd =await bcrypt.compare(password, user.password)
+if(!isCorrectPassowrd){
+    await res.status(400).json({msg:"Invalid credential"});
+}
+// creating a token and signing it with jwt
+const token= jwt.sign({id:user._id}, process.env.JWT_SECRET);
+
+res.cookie("token",token,{
+    httpOnly:true,
+    secure:true,
+    expires: new Date(Date.now()+ 24*60*60*1000)
+}).send();
+
+// SEND USER DATA
+res.json({
+    token,
+    user,
+    msg:"user logged in successfully"
+});
+
+
+backend ma 
+npm i jsonwebtoken
+
+usercontrollers ma 
+module vanda mathi yo code
+
+router.post("/login",async(req,res)=>{
+    console.log(req.body);
+});
+
+
+
+.env ma jani 
+ JWT_SECRET= //eta chai j rakhna manlagxa tei rakhni
+JWT_SECRET=mysecretkey
+
+
+aba postman ma jani 
+user/login garni 
+
+{
+    "email":"asmita@gmail.com"
+    "password":"abc"
+}
+
+yo type garni ani send garni
+
+
+last ma kk garyo no idea haiii 
+kei mile thiyena 
+kaile nasla ko code liyo kaile dilasha ko 
+
+last ma backend on thiyena raixa 
+
+last ma milyooo
+
+code liyooo
+
+
+
+
+
+
+2080/02/06
+
+
+login.jsx ma 
+ const navigate = useNavigate()
+ navigate("/")  // login garepaxi homepage ma janxa
+
+navbar ma 
+
+   // get user from local storage
+const user=JSON.parse(localStorage.getItem("user"))
+console.log(user)
+
+ani yo 
+
+{
+                            user? (
+                                <p>Profile</p>
+                               ) :(
+                                <Link to={'/register'}>
+                                <button type="button" class="btn btn-primary px-3 me-2">
+                                     Register
+                                    
+                                 </button>
+                                </Link>
+                                 
+                                )
+                            
+                        }   
+                        
+
+yo garyo vani chai profile ma janxa
+
+
+dropdoem rakhni aba
+
+<div class="dropdown">
+  <button
+    class="btn btn-primary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+
+
+
+
+
+usermodels ma 
+
+ isAdmin : {
+        type: Boolean,
+        default:false
+    }
+
+
+
+admin register garni
+ 
+
+admin ma vako aru delete garni 
+ani admin ko false lai true garni
+
+feri navbar ma jani 
+
+
+2080/02/07
+
+redux setup
+
+npm install @reduxjs/toolkit react-redux
+
+src vitra store folder ani store.js file
+
+store.js vitra 
+
+import { configureStore } from "@reduxjs/toolkit";
+
+export const store= configureStore({
+    reducer:{},
+});
+
+ani userSlice.js vanni file banauni
+
+tyo vitra yo code
+
+aba k garyo birsyooo
+
+
+2080/02/13
+
+backend ma auth vanni folder 
+ani tesma authGuard.js vanni file 
+
+
+  <tr>
+                            <td>
+                                <img src="https://picsum.photos/200" alt="" height={40} />
+                            </td>
+                            <td>Rose</td>
+                            <td>100</td>
+                            <td>Flower</td>
+                            <td>Flower Desc</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://picsum.photos/200" alt="" height={40} />
+                            </td>
+                            <td>Rose</td>
+                            <td>100</td>
+                            <td>Flower</td>
+                            <td>Flower Desc</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <Link to ={'/admin/product/edit/:id'} class="btn btn-success">Edit</Link>
+                                  
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+2080/03/16
+
+src vitra protected
+protected vitra 
+AdminRoute.js
+
+import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom';
+
+const AdminRoute = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+    return user != null && user.isAdmin? <Outlet/> : <Navigate to="/login"/>
+}
+
+export default AdminRoute
+
+
+UserRoute.js
+
+import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom';
+
+const UserRoute = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user != null ? <Outlet /> : <Navigate to="/login" />
+}
+
+export default UserRoute
+
+
+ani app.js ma jani Route milauni 
+
+
+repository 
+ob-backend
+then create repository
+
+arko ni banauni
+ob-frontend
+
+git desktop  ma clone repository vannixa 
+local path aauxa choose and keep where you want 
+then clone
+
+
+yo paxi thaxaina ma adkeeeee 
+
